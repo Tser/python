@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from appium import webdriver
+from Appium import webdriver
 from time import sleep
 desired_caps = {}
 desired_caps['platformName'] = 'Android'
