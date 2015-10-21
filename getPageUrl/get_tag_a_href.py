@@ -66,15 +66,19 @@ class getHref:
             # 创建表
             sql_cu.execute('create table ' +
                            table_name +
-                           ' (id integer primary key, netloc varchar(50), url varchar(128), status varchar(10))')
+                           ' (id integer PRIMARY KEY, netloc varchar(50), url varchar(128), status varchar(10))')
             print table_name, u'表以创建'
         else:
             print table_name, u'表已存在'
+        # sql_cu.close()
         for URL in self.page_tag_a_href:
-            print URL
-            sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" % (table_name, urlparse.urlparse(URL).netloc, URL))
-            sql_ser.commit()
-            print sql_cu.fetchone()              #获取执行后的结果
+            # sql_cu = sql_ser.cursor()
+            sql_cu.execute("select count(*) from dianping where url='%s'" % (URL))
+            if sql_cu.fetchone() == 0:
+                sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" % (
+                table_name, urlparse.urlparse(URL).netloc, URL))
+                sql_ser.commit()
+                # print sql_cu.fetchone()              #获取执行后的结果:None
         sql_cu.close()
         sql_ser.close()
         print 'write sql end'
