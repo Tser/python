@@ -60,21 +60,21 @@ class getHref:
         # sql_ser.isolation_level = None          #自动提交
         sql_cu = sql_ser.cursor()
         # 判断是否已存在表
-        sql_cu.execute('select count(*) from sqlite_master where type="table" and name="' + table_name + '"')
+        sql_cu.execute("select count(*) from sqlite_master where type='table' and name='%s'" % (table_name))
         reslut_table_status = sql_cu.fetchone()
         if reslut_table_status[0] == 0:
             # 创建表
-            sql_cu.execute('create table ' +
-                           table_name +
-                           ' (id integer PRIMARY KEY, netloc varchar(50), url varchar(128), status varchar(10))')
+            sql_cu.execute(
+                "create table '%s' (id integer PRIMARY KEY, netloc varchar(50), url varchar(128), status varchar(10))" % (
+                table_name))
             print table_name, u'表以创建'
         else:
             print table_name, u'表已存在'
         # sql_cu.close()
         for URL in self.page_tag_a_href:
             # sql_cu = sql_ser.cursor()
-            sql_cu.execute("select count(*) from dianping where url='%s'" % (URL))
-            if sql_cu.fetchone() == 0:
+            sql_cu.execute("select count(*) from '%s' where url='%s'" % (table_name, URL))
+            if sql_cu.fetchone()[0] == 0:
                 sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" % (
                 table_name, urlparse.urlparse(URL).netloc, URL))
                 sql_ser.commit()
