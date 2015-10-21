@@ -52,8 +52,6 @@ class getHref:
                         else:
                             self.page_tag_a_href.append(href)
         list(set(self.page_tag_a_href))        #去重
-        # map(getHref(self.url).write_sql, self.page_tag_a_href)
-        # def write_sql(self, URL):
         table_name = self.netloc.split('.')[-2]
         sql_ser = sqlite3.connect('a_href.db')
         # sql_ser.isolation_level = None          #自动提交
@@ -69,13 +67,11 @@ class getHref:
             print table_name, u'表已创建'
         else:
             print table_name, u'表已存在'
-        # sql_cu.close()
         for URL in self.page_tag_a_href:
-            # sql_cu = sql_ser.cursor()
             sql_cu.execute("select count(*) from '%s' where url='%s'" % (table_name, URL))
             if sql_cu.fetchone()[0] == 0:
-                sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" % (
-                table_name, urlparse.urlparse(URL).netloc, URL))
+                sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" %
+                               (table_name, urlparse.urlparse(URL).netloc, URL))
                 sql_ser.commit()
                 # print sql_cu.fetchone()              #获取执行后的结果:None
         sql_cu.close()
