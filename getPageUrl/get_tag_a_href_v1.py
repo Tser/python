@@ -47,7 +47,7 @@ class getHref:
                 href = pq(a).attr('href')
                 if href != None:
                     if href.find('javascript') == -1:
-                        if urlparse.urlparse(href).netloc == '':
+                        if urlparse.urlparse(href).scheme == '' and urlparse.urlparse(href).netloc == '':
                             self.page_tag_a_href.append(self.scheme + '://' + self.netloc + href)
                         else:
                             self.page_tag_a_href.append(href)
