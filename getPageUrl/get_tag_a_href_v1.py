@@ -70,8 +70,8 @@ class getHref:
         for URL in self.page_tag_a_href:
             sql_cu.execute("select count(*) from '%s' where url='%s'" % (table_name, URL))
             if sql_cu.fetchone()[0] == 0:
-                sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', 'OK')" %
-                               (table_name, urlparse.urlparse(URL).netloc, URL))
+                sql_cu.execute("insert into '%s'(netloc, url, status) values('%s', '%s', %d)" %
+                               (table_name, urlparse.urlparse(URL).netloc, URL, requests.get(URL).status_code))
                 sql_ser.commit()
                 # print sql_cu.fetchone()              #获取执行后的结果:None
         sql_cu.close()
