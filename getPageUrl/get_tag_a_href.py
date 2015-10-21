@@ -84,6 +84,7 @@ class getHref:
         print 'write sql end'
 
 if __name__ == "__main__":
-    gg = getHref('http://www.dianping.com/search/category/1/10/g110')
+    target_url = 'http://www.baidu.com'
+    gg = getHref(target_url)
     gg.get_page()
     gg.get_a_href()
