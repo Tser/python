@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import requests, os, sqlite3, urlparse
+import requests, os, sqlite3, urlparse, re
 from pyquery import PyQuery as pq
 
 class getHref:
@@ -47,10 +47,17 @@ class getHref:
                 href = pq(a).attr('href')
                 if href != None:
                     if href.find('javascript') == -1:
-                        if urlparse.urlparse(href).scheme == '' and urlparse.urlparse(href).netloc == '':
-                            self.page_tag_a_href.append(self.scheme + '://' + self.netloc + href)
+                        if urlparse.urlparse(href).netloc == '' and re.match('/', href) != None:
+                            if urlparse.urlparse(href).scheme == '':
+                                self.page_tag_a_href.append(self.scheme + '://' + self.netloc + href)
+                            else:
+                                pass
                         else:
-                            self.page_tag_a_href.append(href)
+                            try:
+                                if requests.get(href).status_code == 200:
+                                    self.page_tag_a_href.append(href)
+                            except:
+                                pass
         list(set(self.page_tag_a_href))        #去重
         table_name = self.netloc.split('.')[-2]
         sql_ser = sqlite3.connect('a_href.db')
