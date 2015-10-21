@@ -67,7 +67,7 @@ class getHref:
             sql_cu.execute(
                 "create table '%s' (id integer PRIMARY KEY, netloc varchar(50), url varchar(128), status varchar(10))" % (
                 table_name))
-            print table_name, u'表以创建'
+            print table_name, u'表已创建'
         else:
             print table_name, u'表已存在'
         # sql_cu.close()
