@@ -21,16 +21,13 @@ for td in pq(HTML).find("td"):
     db.append(pq(td).text())
     for index in range(len(db)):
         if db[index].find(".") != -1:
-            if os.popen('ping ' + db[index]).read().find("TTL") != -1:  # 只保证能ping通
-                try:
-                    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    if soc.connect((db[index], string.atoi(db[index + 1]))) != None:  # 保证ip及端口能够正常连接
-                        print u"此ip可以使用：", \
-                            db[index], \
-                            db[index + 1], \
-                            db[index + 2], \
-                            db[index + 3], \
-                            db[index + 4], \
-                            db[index + 5]
-                except:
-                    pass
+            if requests.get(baseUrl,
+                            proxies={'http': 'http://' + db[index] + ':' + db[index + 1], \
+                                     'https': 'https://' + db[index] + ':' + db[index + 1]}).status_code == 200:
+                print baseUrl, 'is 200', \
+                    db[index], \
+                    db[index + 1], \
+                    db[index + 2], \
+                    db[index + 3], \
+                    db[index + 4], \
+                    db[index + 5]
