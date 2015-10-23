@@ -14,6 +14,7 @@ bs.get(dec_url)
 # 锁定操作的目标
 kw = bs.find_element_by_id('kw')
 kw.clear()
-kw.send_keys(u'selenium')
+kw.send_keys('selenium')
 submit = bs.find_element_by_id('su')
 submit.click()
+bs.quit()
