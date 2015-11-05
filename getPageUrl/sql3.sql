@@ -1,1 +1,1 @@
-select * from baidu;
+select * from baidu
