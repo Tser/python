@@ -2,14 +2,17 @@
 # coding=utf-8
 
 '''
+        OS：windows8.1
         python2.7.10
-        node：0.10.26
-        npm：1.4.6
+        IDE：pycharm4.5
+        node -v = 0.10.26
+        npm -v = 1.4.6
         appium：1.4.13.1
         platformName: MI NOTE
         双卡双待...
         Test android call...
         version=0.1
+        time：2015.11.5
 '''
 from appium import webdriver
 from time import sleep
