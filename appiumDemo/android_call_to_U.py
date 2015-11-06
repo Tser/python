@@ -7,6 +7,7 @@
         version=0.1
 '''
 from appium import webdriver
+from time import sleep
 caps = {}
 caps['platformName'] = 'Android'
 caps['platformVersion'] = '4.4'
@@ -26,4 +27,6 @@ try:
 except Exception, e:
         print e.message
 finally:
+        sleep(5)  # 为了查看结果...
+        # 执行此语句，为了结束本次对话(即：session)，方便下次执行脚本不用重新启动appium服务
         driver.quit()
