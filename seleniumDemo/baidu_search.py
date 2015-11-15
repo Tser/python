@@ -6,6 +6,7 @@
                         chromedriver(x64).exe驱动文件放在C:\windows\
 '''
 from selenium import webdriver
+from time import sleep
 # 目标url
 dec_url = 'http://www.baidu.com'
 # 打开chrome浏览器
@@ -18,4 +19,5 @@ kw.clear()
 kw.send_keys('selenium API')
 submit = bs.find_element_by_id('su')
 submit.click()
-# bs.quit()
+sleep(10)
+bs.quit()
