@@ -3,10 +3,13 @@
 
 import time, requests, urllib2
 
+ip = ''
+port = ''
 s = requests.session()
+proxy = ip + port
 s.proxies = {
-    'http': 'http://120.195.195.94:80',
-    'https': 'https://120.195.195.94:80'
+    'http': 'http://' + proxy,
+    'https': 'https://' + proxy
 }
 url = 'http://www.qq.com'
 code = s.get(url, timeout=10).status_code  # 0.255999803543
