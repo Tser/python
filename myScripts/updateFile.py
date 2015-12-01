@@ -64,7 +64,6 @@ class updateFile:
         except Exception, e:
             print e.message
 
-
 if __name__ == "__main__":
     print "Run Python2.7.10,test success"
     pathName = raw_input("curPathName:")
