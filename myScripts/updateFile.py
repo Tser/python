@@ -48,7 +48,7 @@ class updateFile:
 
     def updateFileCurrent(self):
         try:
-            with open("PlayLoad.csv", 'r') as f:
+            with open("PayLoad.csv", 'r') as f:
                 lines = f.readlines()
                 for line in lines:
                     oldData = line.split(",")[0]
