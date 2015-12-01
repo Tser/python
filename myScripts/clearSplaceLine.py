@@ -19,13 +19,11 @@ class updataFile:
 
 if __name__ == "__main__":
     import os
-
     files = []
     for f in os.listdir("."):  # 当前目录下
         if os.path.isfile(f):
             files.append(f)
     for file in files:
         if ".htm" == os.path.splitext(file)[1]:
-            old = new = file
-            # new = os.path.splitext(file)[0] + ".htm"
+            old = file
             updataFile(old).clearSplaceLine()
