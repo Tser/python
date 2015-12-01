@@ -4,7 +4,7 @@ import os, fileinput
 
 
 class updateFile:
-    def __init__(self, pathName):  # sName:原后缀名，pName:修改后的后缀名
+    def __init__(self, pathName):
         self.pathName = pathName
         self.curFile = []
         self.curDir = []
@@ -68,9 +68,6 @@ class updateFile:
 if __name__ == "__main__":
     print "Run Python2.7.10,test success"
     pathName = raw_input("curPathName:")
-    # srcName = raw_input("play write src:")
-    # dstName = raw_input("play write dst:")
-    # updateFile( pathName).updateFIleLastName(srcName, dstName)
     updateFile(pathName).updateFileCurrent()
     os.system("color a")
     print "update over!"
