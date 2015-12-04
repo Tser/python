@@ -12,7 +12,7 @@ print u"已经申请taskid：", sessionID
 time.sleep(2)
 
 # 发送扫描数据,开始扫描
-targetURL = "http://www.racpro.net/about.php?id=6"
+targetURL = ""
 scanURL = sqlmapURL + "/scan/" + sessionID + "/start"
 data = json.dumps({'url': targetURL})
 header = {'Content-type': 'application/json'}
