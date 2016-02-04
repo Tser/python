@@ -4,21 +4,24 @@
 from appium import webdriver
 from time import sleep
 desired_caps = {}
-desired_caps['platformName'] = 'Android'
-desired_caps['platformVersion'] = '4.4'
-desired_caps['deviceName'] = ''
-desired_caps['appPackage'] = ''
-desired_caps['appActivity'] = ''
+desired_caps['platformName'] = 'Android'                                #系统的名称
+desired_caps['platformVersion'] = '4.4'                                 #系统的版本号
+desired_caps['deviceName'] = ''                                         #设备的名称（设备号）
+desired_caps['appPackage'] = 'com.android.calculator2'                  #应用的包名
+desired_caps['appActivity'] = '.Calculator'                             #应用的入口
 # desired_caps['app-wait-activity'] = ''
-desired_caps['unicodeKeyboard'] = True
-desired_caps['resetKeyboard'] = True
+# desired_caps['unicodeKeyboard'] = True                                #安装appium输入法
+# desired_caps['resetKeyboard'] = True                                  #设置输入法
 
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+
+driver.find_element_by_id(u'清除').click()
+driver.find_element_by_name('7').click()
 sleep(0.5)
-driver.find_element_by_name(u"全部").click()
-sleep(1)
-driver.find_element_by_id('iv_common_header_right').click()
-sleep(1)
-word = driver.find_element_by_id('et_search')
-word.clear()
-word.send_keys(u'中文')
+driver.find_element_by_name(u'减').click()
+sleep(0.5)
+driver.find_element_by_name('6').click()
+sleep(0.5)
+driver.find_element_by_name(u'等于').click()
+
+# driver.quit()
